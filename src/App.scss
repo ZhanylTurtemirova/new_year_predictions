@@ -1,3 +1,26 @@
+:root {
+  --mainRed: #631616;
+  --darkRed-1: #4d0808;
+  --darkRed-2: #4e0c0c;
+  --darkRed-3: #641616;
+  --lightRed: #ede6e6;
+  --mainYellow: #cdb796;
+  --darkYellow: #97805d;
+  --mainWhite: #f3f3f3;
+  --mainText: #2f2b2b;
+  --secondaryText: #5a5555;
+  --buttonText: #dccfbd;
+  --whiteText: #e8e8ee;
+  --borderColor: #4c4c4d;
+}
+
+body {
+  font-family: "Museo Sans Cyrl", sans-serif;
+  background-color: var(--mainRed);
+  color: var(--mainText);
+  font-weight: 400;
+}
+
 .App {
   text-align: center;
 }

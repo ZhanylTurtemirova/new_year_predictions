@@ -1,0 +1,87 @@
+.Card {
+  background-color: var(--mainYellow);
+  height: 100%;
+  width: 100%;
+
+  .Content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 20px 37px;
+    box-sizing: border-box;
+  }
+
+  .Title {
+    font-weight: 900;
+    font-size: 48px;
+    margin: 0;
+  }
+  .Text {
+    padding-top: 10px;
+    font-size: 14px;
+    margin: 0;
+
+    &Bold {
+      font-weight: 700;
+      margin: auto;
+    }
+  }
+  .Form {
+    width: 322px;
+    margin: 0 auto;
+    margin-bottom: 36px;
+  }
+  .Input {
+    width: 100%;
+    border: none;
+    background-image: none;
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid var(--borderColor);
+    font-size: 14px;
+    &::placeholder {
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--secondaryText);
+      text-align: center;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  .Button {
+    width: 100%;
+    border: none;
+    background-image: none;
+    background-color: transparent;
+    box-shadow: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--buttonText);
+    padding: 12px 0;
+    background-color: var(--mainRed);
+    box-shadow: 0px 3px 7px 4px rgba(34, 32, 32, 0.1);
+    border-radius: 4px;
+    margin-top: 27px;
+    &:hover {
+      border: none;
+      background-color: var(--darkRed-1);
+      cursor: pointer;
+    }
+    &:focus,
+    &:visited {
+      border: none;
+      background-color: var(--darkRed-2);
+    }
+  }
+  .Logo {
+    margin: 0 auto;
+    width: 68px;
+    height: 24px;
+    background-image: url("../../img/logo.svg");
+    background-size: cover;
+  }
+}

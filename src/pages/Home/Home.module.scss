@@ -1,0 +1,51 @@
+.Home {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .Content {
+    width: 1100px;
+    height: 639px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: url("../../img/bg.png") no-repeat center center fixed;
+    background-size: cover;
+    box-shadow: 0px 4px 15px rgba(39, 37, 37, 0.3);
+    .Corner {
+      position: absolute;
+      height: 18px;
+      width: 94px;
+      background: var(--darkYellow);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+      transform: rotate(45deg);
+
+      &Left {
+        bottom: 15px;
+        left: -20px;
+      }
+      &Right {
+        top: 15px;
+        right: -20px;
+      }
+    }
+    .Prediction {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .Left,
+  .Right {
+    width: 50%;
+    height: 100%;
+  }
+  .Right {
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

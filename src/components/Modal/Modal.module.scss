@@ -1,0 +1,45 @@
+.Modal {
+  height: 56px;
+  margin-top: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--whiteText);
+  text-align: center;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 20px;
+  transition: all 0.3s ease-in-out;
+  a {
+    color: var(--whiteText);
+    text-decoration: none;
+  }
+
+  &Open {
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    transition: all 0.3s ease-in-out;
+
+    .Content {
+      margin: auto;
+      height: 326px;
+      width: 294px;
+      transition: all 0.3s ease-in-out;
+    }
+    .Paragraph {
+      padding-bottom: 10px;
+    }
+  }
+  .Arrow {
+    width: 24px;
+    height: 24px;
+    margin: auto;
+    background: url("../../img/arrow-up.svg") no-repeat center;
+
+    transform: rotate(0deg);
+    transition: transform 0.3s linear;
+    &Down {
+      transform: rotate(180deg);
+      transition: transform 0.3s linear;
+    }
+  }
+}
