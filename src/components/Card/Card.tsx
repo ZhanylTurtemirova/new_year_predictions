@@ -98,6 +98,7 @@ const Card: React.FC<CardProp> = ({ handleRandomElement, clearUsers , setWishes,
         </p>
         <form onSubmit={generateResult} className={styles.Form}>
           <div>
+
             <input
               name="employee"
               type="text"
