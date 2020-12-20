@@ -20,20 +20,6 @@ const Card: React.FC<CardProp> = ({ handleRandomElement, clearUsers , setWishes,
 
   useEffect((): void => {
     clearUsers()
-    // const fetchWishes = () => {
-    // fetch("/api/wishes", { method: "GET" })
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((wishes) => {
-    //     setWishes(wishes);
-    //     console.log(wishes);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-    // fetchWishes();
     Api.getWishes()
         .then(res => {
           // setWishesArray(res.data);
@@ -48,8 +34,12 @@ const Card: React.FC<CardProp> = ({ handleRandomElement, clearUsers , setWishes,
     const wish = wishes[Math.floor(Math.random() * wishes.length)];
     setRandomElement(wish);
     handleRandomElement(wish);
-    if (randomElement?.isGift) {
-      sendMail(employee, randomElement);
+    console.log("1234", wish);
+
+    if (wish?.isGift) {
+      console.log("QWERTTYUIIO", randomElement);
+
+      sendMail(employee, wish);
     }
     e.preventDefault();
   };
@@ -57,22 +47,14 @@ const Card: React.FC<CardProp> = ({ handleRandomElement, clearUsers , setWishes,
   const sendMail = (employee: string, randomElement: Wish) => {
     let { text } = randomElement;
     text = `${employee}: ${text}`;
-    console.log(text);
-    fetch("/mail", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ text: text }),
-    })
-      .then((response) => response.json())
-      .then((resData) => {
-        if (resData.status === "success") {
-          setEmployee("");
-        } else if (resData.status === "fail") {
-          console.log("Message failed to send.");
-        }
-      });
+    Api.sendMail({ text: text })
+        .then((resData) => {
+          if (resData.status === 200) {
+            setEmployee("");
+          } else  {
+            console.log(resData);
+          }
+        });
   };
 
   const handleChange = (e: any) => {
