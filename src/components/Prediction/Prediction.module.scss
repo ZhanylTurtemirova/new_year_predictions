@@ -76,6 +76,9 @@
       word-wrap: break-word;
       overflow-y: scroll;
       overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .Img {
       margin-top: 10px;
