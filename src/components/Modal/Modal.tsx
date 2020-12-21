@@ -26,7 +26,7 @@ const Modal: React.FC = () => {
             локации
           </p>
           <p className={styles.Paragraph}>
-            <a href="mailto:">Алматы: Энвера Исабаева</a>
+            <a href="mailto:envera_issabaeva@epam.com">Алматы: Энвера Исабаева</a>
             <br />
             <a href="mailto:anna_voronova@epam.com">Караганда: Анна Воронова</a>
             <br />
