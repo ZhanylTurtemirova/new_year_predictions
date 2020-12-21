@@ -1,5 +1,6 @@
 export interface Wish {
     text: string,
-    id: string,
-    isGift: boolean
+    _id: string,
+    isGift: boolean,
+    count?: number
 }

@@ -12,6 +12,8 @@ export const wishesReducer = (
             return payload;
         case actions.clearWishes:
             return initialState;
+        case actions.changeWishes:
+            return [...initialState,payload];
         default:
             return state;
     }

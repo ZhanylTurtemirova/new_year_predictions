@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Wish } from "../../core/models/Wish";
+import { User } from "../../core/models/User";
 import styles from "./Card.module.scss";
 import {clearUsers} from "../../redux/actions/users.action";
-import {setWishes} from "../../redux/actions/wishes.action";
+import {setWishes, changeWishes} from "../../redux/actions/wishes.action";
 import {Api} from "../../core/api/api";
 
 interface CardProp {
   handleRandomElement(arg: any): void;
   clearUsers: () => void;
   setWishes: (wishes: Wish[]) => void;
+  changeWishes: (wish: Wish) => void;
   wishes: Wish[]
 }
 
-const Card: React.FC<CardProp> = ({ handleRandomElement, clearUsers , setWishes, wishes}) => {
+const Card: React.FC<CardProp> = ({ handleRandomElement, clearUsers , setWishes, wishes,changeWishes}) => {
   const [employee, setEmployee] = useState<string>("");
-  // const [wishes, setWishesArray] = useState<Wish[]>([]);
   const [randomElement, setRandomElement] = useState<Wish>();
 
   useEffect((): void => {
@@ -28,18 +29,36 @@ const Card: React.FC<CardProp> = ({ handleRandomElement, clearUsers , setWishes,
         .catch(err => {
           console.log(err);
         });
-  }, [clearUsers, setWishes]);
+  }, [clearUsers, setWishes, changeWishes]);
+
+  const checkUser =()=>{
+    try {
+      Api.setUser({name: employee})
+          .then(res => {
+            console.log("user set")
+          })
+      return true;
+    } catch (e) {
+      return  false
+    }
+  }
 
   const generateResult = (e: any) => {
-    const wish = wishes[Math.floor(Math.random() * wishes.length)];
-    setRandomElement(wish);
-    handleRandomElement(wish);
-    console.log("1234", wish);
-
-    if (wish?.isGift) {
-      console.log("QWERTTYUIIO", randomElement);
-
-      sendMail(employee, wish);
+    setEmployee('');
+    if (checkUser()) {
+      const newWishes= wishes.filter(item=> (item.isGift && item.count &&  item.count>0) || !item.isGift)
+      const wish = newWishes[Math.floor(Math.random() * newWishes.length)];
+      setRandomElement(wish);
+      handleRandomElement(wish);
+      if (wish?.isGift && wish.count) {
+        const newCount = --wish.count
+        Api.changeWish({id: wish._id, count: newCount})
+        sendMail(employee, wish);
+      }
+    } else {
+      const newWishes= wishes.filter(item=>!item.isGift)
+      const wish = newWishes[Math.floor(Math.random() * newWishes.length)];
+      handleRandomElement(wish);
     }
     e.preventDefault();
   };
@@ -105,7 +124,8 @@ const Card: React.FC<CardProp> = ({ handleRandomElement, clearUsers , setWishes,
   );
 };
 
+// @ts-ignore
 export default connect(
     (state: any) => ({ wishes: state.wishesReducer }),
-    {clearUsers, setWishes}
+    {clearUsers, setWishes, changeWishes}
     )(Card);
